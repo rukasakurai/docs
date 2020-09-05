@@ -19,5 +19,5 @@ https://management.azure.com/subscriptions/{subscription id}/resourceGroups/{res
 ```
 #### Headers
 |Key|Value|
-|-|-|
+|---|---|
 |Authorization|Bearer {Bearer Token}|
