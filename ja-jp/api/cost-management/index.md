@@ -15,10 +15,64 @@ PostmanからQueryする際にAPIの認証にはBearerトークンを使うこ�
 3. Azureの何かしらのAPIの呼び出しを開く（例: ```https://management.azure.com/batch?api-version=xx```）
 4. Header>Request Headers>authorizationの「Bearer xxxx」をコピー
 
-### 3. POSTの構築
+### 3. POSTの構築と実行
 #### URL
 ```https://management.azure.com/subscriptions/{subscription id}/resourceGroups/{resource group}/providers/Microsoft.CostManagement/query/?api-version=2019-11-01```
-#### Headers
+#### Request Headers
 |Key|Value|
 |---|---|
 |Authorization|Bearer {Bearer Token}|
+
+#### Request Body例
+```
+{
+ "type": "Usage",
+ "timeframe": "YearToDate",
+  "dataset": {
+    "granularity": "Monthly",
+    "aggregation": {
+      "totalCost": {
+        "name": "PreTaxCost",
+        "function": "Sum"
+      }
+    }
+  }
+}
+```
+
+### 4. POSTの結果
+#### Response Body例
+```
+{
+    "id": "subscriptions/xxx/resourcegroups/xxx/providers/Microsoft.CostManagement/query/xxx",
+    "name": "xxx",
+    "type": "Microsoft.CostManagement/query",
+    "location": null,
+    "sku": null,
+    "eTag": null,
+    "properties": {
+        "nextLink": null,
+        "columns": [
+            {
+                "name": "PreTaxCost",
+                "type": "Number"
+            },
+            {
+                "name": "BillingMonth",
+                "type": "Datetime"
+            },
+            {
+                "name": "Currency",
+                "type": "String"
+            }
+        ],
+        "rows": [
+            [
+                {コスト額},
+                "{日時}",
+                "{通貨}"
+            ]
+        ]
+    }
+}
+```
