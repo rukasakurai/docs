@@ -12,7 +12,7 @@ PostmanからQueryする際にAPIの認証にはBearerトークンを使うこ�
 以下のように取得することができます
 1. ブラウザのDeveloper toolsのNetworkタブを開く
 2. https://portal.azure.com にログイン
-3. Azureの何かしらのAPIの呼び出しを開く（例: https://management.azure.com/batch?api-version=xx）
+3. Azureの何かしらのAPIの呼び出しを開く（例: ```https://management.azure.com/batch?api-version=xx```）
 4. Header>Request Headers>authorizationの「Bearer xxxx」をコピー
 
 ### 3. POSTの構築
